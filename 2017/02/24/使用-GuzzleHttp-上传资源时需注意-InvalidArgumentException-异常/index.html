@@ -87,12 +87,22 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Chopin">
-<meta property="og:url" content="https://chopin.im/index.html">
+<meta name="description" content="下文的 GuzzleHttp 如果没有特指版本，说的都是 6.2.2 版本
+
+产生问题的原因GuzzleHttp 会在上传完毕后将上传的资源进行关闭(通过 \GuzzleHttp\Psr7\Stream::__destruct())，如果是需要多次使用的资源，应该注意传递给 GuzzleHttp 的上传资源不要是 resource 或者 \Psr\Http\Message\StreamInter">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用 GuzzleHttp 上传资源时需注意 InvalidArgumentException 异常">
+<meta property="og:url" content="https://chopin.im/2017/02/24/使用-GuzzleHttp-上传资源时需注意-InvalidArgumentException-异常/index.html">
 <meta property="og:site_name" content="Chopin">
+<meta property="og:description" content="下文的 GuzzleHttp 如果没有特指版本，说的都是 6.2.2 版本
+
+产生问题的原因GuzzleHttp 会在上传完毕后将上传的资源进行关闭(通过 \GuzzleHttp\Psr7\Stream::__destruct())，如果是需要多次使用的资源，应该注意传递给 GuzzleHttp 的上传资源不要是 resource 或者 \Psr\Http\Message\StreamInter">
+<meta property="og:updated_time" content="2017-02-24T15:08:44.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Chopin">
+<meta name="twitter:title" content="使用 GuzzleHttp 上传资源时需注意 InvalidArgumentException 异常">
+<meta name="twitter:description" content="下文的 GuzzleHttp 如果没有特指版本，说的都是 6.2.2 版本
+
+产生问题的原因GuzzleHttp 会在上传完毕后将上传的资源进行关闭(通过 \GuzzleHttp\Psr7\Stream::__destruct())，如果是需要多次使用的资源，应该注意传递给 GuzzleHttp 的上传资源不要是 resource 或者 \Psr\Http\Message\StreamInter">
 
 
 
@@ -120,13 +130,13 @@
 
 
 
-  <link rel="canonical" href="https://chopin.im/"/>
+  <link rel="canonical" href="https://chopin.im/2017/02/24/使用-GuzzleHttp-上传资源时需注意-InvalidArgumentException-异常/"/>
 
 
 
 
 
-  <title> Chopin </title>
+  <title> 使用 GuzzleHttp 上传资源时需注意 InvalidArgumentException 异常 | Chopin </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -151,9 +161,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -246,9 +254,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -281,10 +289,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2017/02/24/使用-GuzzleHttp-上传资源时需注意-InvalidArgumentException-异常/" itemprop="url">
-                  使用 GuzzleHttp 上传资源时需注意 InvalidArgumentException 异常
-                </a>
+                使用 GuzzleHttp 上传资源时需注意 InvalidArgumentException 异常
               
             
           </h1>
@@ -335,9 +340,7 @@
       
 
       
-        
-          
-            <blockquote>
+        <blockquote>
 <p>下文的 <a href="https://github.com/guzzle/guzzle" target="_blank" rel="external">GuzzleHttp</a> 如果没有特指版本，说的都是 6.2.2 版本</p>
 </blockquote>
 <h3 id="产生问题的原因"><a href="#产生问题的原因" class="headerlink" title="产生问题的原因"></a>产生问题的原因</h3><p><a href="https://github.com/guzzle/guzzle" target="_blank" rel="external">GuzzleHttp</a> 会在上传完毕后将上传的资源进行关闭(通过 <a href="https://github.com/guzzle/psr7/blob/615699cf253fbb5d29ae2c28ba791ebeb5939bd3/src/Stream.php#L85" target="_blank" rel="external"><code>\GuzzleHttp\Psr7\Stream::__destruct()</code></a>)，如果是需要多次使用的资源，应该注意传递给 <a href="https://github.com/guzzle/guzzle" target="_blank" rel="external">GuzzleHttp</a> 的上传资源不要是 <code>resource</code> 或者 <a href="https://github.com/php-fig/http-message/blob/master/src/StreamInterface.php" target="_blank" rel="external"><code>\Psr\Http\Message\StreamInterface</code></a> 类型(实现该接口的类，实例化后返回的资源还是 <code>resource</code> 类型)。</p>
@@ -356,16 +359,20 @@
 <figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="comment">// 下面这3行才是重点，其余代码都是直接复制 \GuzzleHttp\Psr7\stream_for</span></div><div class="line"><span class="keyword">namespace</span> <span class="title">Your</span>\<span class="title">Name</span>\<span class="title">Space</span>;</div><div class="line"></div><div class="line"><span class="keyword">use</span> <span class="title">Your</span>\<span class="title">Name</span>\<span class="title">Space</span>\<span class="title">Stream</span>;     <span class="comment">// 注意这里使用的是你自己的 Stream 类</span></div><div class="line"><span class="keyword">use</span> <span class="title">GuzzleHttp</span>\<span class="title">Psr7</span>\<span class="title">PumpStream</span>; <span class="comment">// 该类不会自动销毁资源</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">stream_for</span><span class="params">($resource = <span class="string">''</span>, array $options = [])</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">if</span> (is_scalar($resource)) &#123;</div><div class="line">        $stream = fopen(<span class="string">'php://temp'</span>, <span class="string">'r+'</span>);</div><div class="line">        <span class="keyword">if</span> ($resource !== <span class="string">''</span>) &#123;</div><div class="line">            fwrite($stream, $resource);</div><div class="line">            fseek($stream, <span class="number">0</span>);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Stream($stream, $options);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">switch</span> (gettype($resource)) &#123;</div><div class="line">        <span class="keyword">case</span> <span class="string">'resource'</span>:</div><div class="line">            <span class="keyword">return</span> <span class="keyword">new</span> Stream($resource, $options);</div><div class="line">        <span class="keyword">case</span> <span class="string">'object'</span>:</div><div class="line">            <span class="keyword">if</span> ($resource <span class="keyword">instanceof</span> StreamInterface) &#123;</div><div class="line">                <span class="keyword">return</span> $resource;</div><div class="line">            &#125; <span class="keyword">elseif</span> ($resource <span class="keyword">instanceof</span> \Iterator) &#123;</div><div class="line">                <span class="keyword">return</span> <span class="keyword">new</span> PumpStream(<span class="function"><span class="keyword">function</span> <span class="params">()</span> <span class="title">use</span> <span class="params">($resource)</span> </span>&#123;</div><div class="line">                    <span class="keyword">if</span> (!$resource-&gt;valid()) &#123;</div><div class="line">                        <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">                    &#125;</div><div class="line">                    $result = $resource-&gt;current();</div><div class="line">                    $resource-&gt;next();</div><div class="line">                    <span class="keyword">return</span> $result;</div><div class="line">                &#125;, $options);</div><div class="line">            &#125; <span class="keyword">elseif</span> (method_exists($resource, <span class="string">'__toString'</span>)) &#123;</div><div class="line">                <span class="keyword">return</span> stream_for((string) $resource, $options);</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">case</span> <span class="string">'NULL'</span>:</div><div class="line">            <span class="keyword">return</span> <span class="keyword">new</span> Stream(fopen(<span class="string">'php://temp'</span>, <span class="string">'r+'</span>), $options);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (is_callable($resource)) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> PumpStream($resource, $options);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> \InvalidArgumentException(<span class="string">'Invalid resource type: '</span> . gettype($resource));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>之后，将 <code>resource</code> 或者 <code>string</code> 类型通过自己的 <code>stream_for</code> 函数转换为 <a href="https://github.com/php-fig/http-message/blob/master/src/StreamInterface.php" target="_blank" rel="external"><code>\Psr\Http\Message\StreamInterface</code></a> 类型，如果资源原本就是 <a href="https://github.com/php-fig/http-message/blob/master/src/StreamInterface.php" target="_blank" rel="external"><code>\Psr\Http\Message\StreamInterface</code></a> 类型，也可以通过 <a href="https://github.com/php-fig/http-message/blob/f22d9b6dd24ec003c7996813d505e4a9b1b6390d/src/StreamInterface.php#L143" target="_blank" rel="external"><code>\Psr\Http\Message\StreamInterface::getContents()</code></a> 方法将其当作字符串处理。</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="keyword">require</span> <span class="string">'./vendor/autoload.php'</span>;</div><div class="line"></div><div class="line">$client = <span class="keyword">new</span> GuzzleHttp\Client();</div><div class="line"></div><div class="line"><span class="comment">// resource</span></div><div class="line">$resource = Your\Name\Space\stream_for(fopen(<span class="string">'./image.jpg'</span>, <span class="string">'r'</span>));</div><div class="line"></div><div class="line"><span class="comment">// string</span></div><div class="line"><span class="comment">// $resource = Your\Name\Space\stream_for(file_get_contents('./image.jpg'));</span></div><div class="line"></div><div class="line"><span class="comment">// Psr\Http\Message\StreamInterface</span></div><div class="line"><span class="comment">// $stream = GuzzleHttp\Psr7\stream_for(file_get_contents('./image.jpg'));</span></div><div class="line"><span class="comment">// $resource = Your\Name\Space\stream_for($stream-&gt;getContents());</span></div><div class="line"></div><div class="line">$option = [<span class="string">'multipart'</span> =&gt; [[</div><div class="line">    <span class="string">'name'</span> =&gt; <span class="string">'pic1'</span>,</div><div class="line">    <span class="string">'contents'</span> =&gt; $resource,</div><div class="line">]]];</div><div class="line"></div><div class="line"><span class="comment">// 成功上传</span></div><div class="line">$client-&gt;post(<span class="string">'http://httpbin.org/post'</span>, $option);</div><div class="line"></div><div class="line"><span class="comment">// 成功上传</span></div><div class="line">$client-&gt;post(<span class="string">'http://httpbin.org/post'</span>, $option);</div><div class="line"></div><div class="line"><span class="comment">// 手动销毁资源</span></div><div class="line">$resource-&gt;close();</div></pre></td></tr></table></figure>
-          
+      
+    </div>
+
+    <div>
+      
         
+
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
       
     </div>
 
@@ -374,142 +381,38 @@
       
 
       
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://chopin.im/2017/02/23/hello-world/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Chopin Ngo">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="https://ws2.sinaimg.cn/large/0068M0TKgy1fd1na5itmyj30cs0cswjp.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Chopin">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Chopin" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
         
-        
-          <h1 class="post-title" itemprop="name headline">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
+              <a href="/2017/02/23/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
             
-              
-                
-                <a class="post-title-link" href="/2017/02/23/hello-world/" itemprop="url">
-                  Hello World
-                </a>
-              
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-23T19:44:52+08:00">
-                2017-02-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <p>程序猿日常开篇</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
           
           </div>
@@ -517,6 +420,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -536,8 +443,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="https://ws2.sinaimg.cn/large/0068M0TKgy1fd1na5itmyj30cs0cswjp.jpg"
@@ -601,6 +517,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#产生问题的原因"><span class="nav-number">1.</span> <span class="nav-text">产生问题的原因</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方法"><span class="nav-number">2.</span> <span class="nav-text">解决方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#传值而非引用"><span class="nav-number">2.1.</span> <span class="nav-text">传值而非引用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用-Promise"><span class="nav-number">2.2.</span> <span class="nav-text">使用 Promise</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#手动销毁资源"><span class="nav-number">2.3.</span> <span class="nav-text">手动销毁资源</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -713,6 +645,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
 
   
 
