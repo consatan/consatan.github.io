@@ -88,20 +88,20 @@
 
 
 <meta name="description" content="Update 2017-05-13 
-今天翻看本篇文章时发现我之前使用的 GuzzleHttp 上传资源方法有误。产生问题的原因还是之前说的，然而…它只有在 destruct 的时候才会关闭资源句柄，使用只需要控制它啥时候 destruct 不就得了…
+今天翻看本篇文章时发现我之前使用的 GuzzleHttp 上传资源方法有误。产生问题的原因还是之前说的，然而…它只有在 destruct 的时候才会关闭资源句柄，所以只需要控制它啥时候 destruct 不就得了…
 12345678910111213141516171819202122&amp;lt;?phprequire &apos;./vendor/autoload.ph">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用 GuzzleHttp 上传资源时需注意 InvalidArgumentException 异常">
 <meta property="og:url" content="https://chopin.im/2017/02/24/使用-GuzzleHttp-上传资源时需注意-InvalidArgumentException-异常/index.html">
 <meta property="og:site_name" content="Chopin">
 <meta property="og:description" content="Update 2017-05-13 
-今天翻看本篇文章时发现我之前使用的 GuzzleHttp 上传资源方法有误。产生问题的原因还是之前说的，然而…它只有在 destruct 的时候才会关闭资源句柄，使用只需要控制它啥时候 destruct 不就得了…
+今天翻看本篇文章时发现我之前使用的 GuzzleHttp 上传资源方法有误。产生问题的原因还是之前说的，然而…它只有在 destruct 的时候才会关闭资源句柄，所以只需要控制它啥时候 destruct 不就得了…
 12345678910111213141516171819202122&amp;lt;?phprequire &apos;./vendor/autoload.ph">
-<meta property="og:updated_time" content="2017-05-13T07:46:26.000Z">
+<meta property="og:updated_time" content="2017-05-13T07:48:33.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用 GuzzleHttp 上传资源时需注意 InvalidArgumentException 异常">
 <meta name="twitter:description" content="Update 2017-05-13 
-今天翻看本篇文章时发现我之前使用的 GuzzleHttp 上传资源方法有误。产生问题的原因还是之前说的，然而…它只有在 destruct 的时候才会关闭资源句柄，使用只需要控制它啥时候 destruct 不就得了…
+今天翻看本篇文章时发现我之前使用的 GuzzleHttp 上传资源方法有误。产生问题的原因还是之前说的，然而…它只有在 destruct 的时候才会关闭资源句柄，所以只需要控制它啥时候 destruct 不就得了…
 12345678910111213141516171819202122&amp;lt;?phprequire &apos;./vendor/autoload.ph">
 
 
@@ -341,7 +341,7 @@
 
       
         <p><strong> Update 2017-05-13 </strong></p>
-<p>今天翻看本篇文章时发现我之前使用的 GuzzleHttp 上传资源方法有误。<a href="#产生问题的原因">产生问题的原因</a>还是之前说的，然而…它只有在 <code>destruct</code> 的时候才会关闭资源句柄，使用只需要控制它啥时候 <code>destruct</code> 不就得了…</p>
+<p>今天翻看本篇文章时发现我之前使用的 GuzzleHttp 上传资源方法有误。<a href="#产生问题的原因">产生问题的原因</a>还是之前说的，然而…它只有在 <code>destruct</code> 的时候才会关闭资源句柄，所以只需要控制它啥时候 <code>destruct</code> 不就得了…</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="keyword">require</span> <span class="string">'./vendor/autoload.php'</span>;</div><div class="line"></div><div class="line">$client = <span class="keyword">new</span> GuzzleHttp\Client();</div><div class="line"><span class="comment">// resource</span></div><div class="line">$content = GuzzleHttp\Psr7\stream_for(fopen(<span class="string">'./image.jpg'</span>, <span class="string">'r'</span>));</div><div class="line"><span class="comment">// string</span></div><div class="line"><span class="comment">// $content = GuzzleHttp\Psr7\stream_for(file_get_contents('./image.jpg'));</span></div><div class="line"><span class="comment">// Psr7\Http\Message\StreamInterface</span></div><div class="line"><span class="comment">// $content = GuzzleHttp\Psr7\stream_for($stream);</span></div><div class="line">$option = [<span class="string">'multipart'</span> =&gt; [[</div><div class="line">    <span class="string">'name'</span> =&gt; <span class="string">'pic1'</span>,</div><div class="line">    <span class="string">'contents'</span> =&gt; $content,</div><div class="line">]]];</div><div class="line"></div><div class="line"><span class="comment">// 成功上传</span></div><div class="line">$client-&gt;post(<span class="string">'http://httpbin.org/post'</span>, $option);</div><div class="line"><span class="comment">// 成功上传</span></div><div class="line">$client-&gt;post(<span class="string">'http://httpbin.org/post'</span>, $option);</div><div class="line"><span class="comment">// 手动关闭资源</span></div><div class="line">$content-&gt;close();</div></pre></td></tr></table></figure>
 <p><strong> 以下为之前的原文 </strong></p>
 <blockquote>
